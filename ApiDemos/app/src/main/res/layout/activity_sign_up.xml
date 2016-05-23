@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <!-- SUPPORT TOOL BAR FOR TITLE AND BACK ARROW -->
 
         <android.support.v7.widget.Toolbar
@@ -35,146 +34,203 @@
                 android:layout_margin="15dp"
                 android:orientation="vertical">
 
-                <!-- FIRST AND LAST NAME -->
+                <!-- JERNE TEXT & TAG LINE -->
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <!-- TOP SPACE VIEW FOR ALL DEVICES -->
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="50"
-                        android:orientation="vertical">
+                        android:src="@drawable/ic_text_jerne_blue" />
 
-                        <!-- FIRST NAME -->
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/etFirstName"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/hint_first_name"
-                                android:imeOptions="actionNext"
-                                android:singleLine="true" />
-
-                        </android.support.design.widget.TextInputLayout>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
+                    <TextView
+                        android:id="@+id/tvJerneTagline"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="50"
-                        android:orientation="vertical">
-
-                        <!-- LAST NAME -->
-
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <EditText
-                                android:id="@+id/etLastName"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/hint_last_name"
-                                android:imeOptions="actionNext"
-                                android:singleLine="true" />
-
-                        </android.support.design.widget.TextInputLayout>
-                    </LinearLayout>
+                        android:layout_marginTop="5dp"
+                        android:text="Your journey made smart"
+                        android:textColor="@color/color0072ff"
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
-                <!-- EMAIL -->
 
-                <android.support.design.widget.TextInputLayout
+                <!-- SIGN UP FORM -->
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="45dp"
+                    android:orientation="vertical">
 
-                    <EditText
-                        android:id="@+id/etEmail"
+                    <!-- ERROR MESSAGE FIELD -->
+
+                    <TextView
+                        android:id="@+id/tvErrorView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/hint_email"
-                        android:imeOptions="actionNext"
-                        android:inputType="textEmailAddress"
-                        android:text="@string/text_email" />
+                        android:textColor="@color/colorff0000"
+                        android:textSize="16sp" />
 
-                </android.support.design.widget.TextInputLayout>
+                    <!-- FIRST AND LAST NAME -->
 
-                <!-- PASSWORD -->
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <EditText
-                        android:id="@+id/etPassword"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/hint_password"
-                        android:imeOptions="actionNext"
-                        android:inputType="textPassword" />
+                        android:orientation="horizontal">
 
-                </android.support.design.widget.TextInputLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:orientation="vertical">
 
-                <!-- CONFIRM PASSWORD -->
+                            <!-- FIRST NAME -->
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/tilFname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                                <EditText
+                                    android:id="@+id/etFname"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="7dp"
+                                    android:hint="@string/hint_first_name"
+                                    android:imeOptions="actionNext"
+                                    android:singleLine="true" />
 
-                    <EditText
-                        android:id="@+id/etConfirmPassword"
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="7dp"
+                            android:layout_weight="50"
+                            android:orientation="vertical">
+
+                            <!-- LAST NAME -->
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/tilLname"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <EditText
+                                    android:id="@+id/etLname"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/hint_last_name"
+                                    android:imeOptions="actionNext"
+                                    android:singleLine="true" />
+
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- EMAIL -->
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/tilEmail"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/hint_confirm_password"
-                        android:imeOptions="actionNext"
-                        android:inputType="textPassword" />
+                        android:layout_height="wrap_content">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/etEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/text_email"
+                            android:imeOptions="actionNext"
+                            android:inputType="textEmailAddress" />
 
-                <!-- MOBILE NUMBER -->
+                    </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    <!-- PASSWORD -->
 
-                    <EditText
-                        android:id="@+id/etContact"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/tilPassword"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/hint_contact"
-                        android:imeOptions="actionDone"
-                        android:inputType="number"
-                        android:maxLength="10" />
+                        android:layout_height="wrap_content">
 
-                </android.support.design.widget.TextInputLayout>
+                        <EditText
+                            android:id="@+id/etPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_password"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPassword" />
 
-                <!-- SIGN UP -->
+                    </android.support.design.widget.TextInputLayout>
 
-                <Button
-                    android:id="@+id/btRegiter"
+                    <!-- CONFIRM PASSWORD -->
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/tilConfirmPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etConfirmPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_confirm_password"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPassword" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!-- MOBILE NUMBER -->
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/tilContact"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/etContact"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/hint_contact"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="10" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <!-- SIGN UP -->
+
+                    <com.example.mapdemo.customfonts.Button.CaviarDreamsButtonFont
+                        android:id="@+id/btRegiter"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@color/color0072ff"
+                        android:text="@string/text_title_register"
+                        android:textAllCaps="false"
+                        android:textColor="@color/colorffffff"
+                        android:textSize="22sp" />
+
+                </LinearLayout>
+
+                <!-- SPACE AT BOTTOM -->
+                <Space
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
-                    android:background="@color/colorPrimary"
-                    android:padding="10dp"
-                    android:textAllCaps="false"
-                    android:text="@string/text_title_register"
-                    android:textColor="@color/colorffffff"
-                    android:textSize="22sp" />
+                    android:layout_height="40dp" />
 
             </LinearLayout>
 

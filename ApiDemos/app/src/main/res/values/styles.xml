@@ -23,4 +23,12 @@
         <item name="colorAccent">@android:color/holo_blue_light</item>
     </style>
 
+
+    <!-- android.support.design.widget.TextInputLayout ERROR COLOR STYLE HERE -->
+
+    <style name="error_appearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/colorff0000</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

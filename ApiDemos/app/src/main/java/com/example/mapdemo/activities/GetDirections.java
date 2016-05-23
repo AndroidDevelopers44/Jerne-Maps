@@ -75,16 +75,16 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by user on 12/7/2015.
+ * Created by ic_user on 12/7/2015.
  */
-public class GetDirections extends AppCompatActivity implements
+public class GetDirections extends BaseActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks {
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final String LOG_TAG = "GetDirection";
     private static final int GOOGLE_API_CLIENT_ID = 0;
-//    public static String[] prgmNameList = {"My Rides", "My Messages", "My Friends", "Chats", "Favourite Destination", "Notifications", "Settings", "    \n"};
+    //    public static String[] prgmNameList = {"My Rides", "My Messages", "My Friends", "Chats", "Favourite Destination", "Notifications", "Settings", "    \n"};
 //    public static int[] prgmImages = {R.drawable.ic_menu_fav_destinations, R.drawable.ic_menu_my_messages, R.drawable.ic_menu_my_friends, R.drawable.ic_menu_menu_chats, R.drawable.ic_menu_fav_destinations, R.drawable.ic_menu_menu_notifications, R.drawable.ic_menu_menu_settings, R.drawable.ic_menu_menu_blank_icon};
 //    public static Class[] classList = {MyRidesRecyclerView.class, ChatListScreen.class, MyFriends.class, ChatListScreen.class, FavouriteDesination.class, Notification.class, SettingsActivity.class, SettingsActivity.class};
     // public static String [] prgmNameList={"Riding Destinations","Meet 'N' Plan A Ride","Riding Events \n    ","Modifly Your Bikes","Healthy Riding","Get Directions","Notifications","Settings"};
@@ -108,7 +108,7 @@ public class GetDirections extends AppCompatActivity implements
     Toolbar toolbar;
     @Bind(R.id.tvTitleToolbar)
     TextView tvTitleToolbar;
-//    @Bind(R.id.drawer_layout)
+    //    @Bind(R.id.drawer_layout)
 //    DrawerLayout mDrawerLayout;
     @Bind(R.id.lvSlidingMenu)
     LinearLayout lvSlidingMenu;
@@ -244,10 +244,11 @@ public class GetDirections extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         Fresco.initialize(GetDirections.this);
         setContentView(R.layout.activity_getdirections);
+
         v2GetRouteDirection = new GMapV2GetRouteDirection();
         activity = this;
         ButterKnife.bind(this);
-      //  setupActionBar();
+        //  setupActionBar();
         markerLatLng = new LatLng(48.8567, 2.3508);
         tvTitleToolbar.setText(getResources().getString(R.string.app_name));
 //        gridView1.setAdapter(new CustomGridAdapter(this, prgmNameList, prgmImages));
@@ -288,8 +289,8 @@ public class GetDirections extends AppCompatActivity implements
                 .tvPlace3);
         tvPlace4 = (AutoCompleteTextView) findViewById(R.id
                 .tvPlace4);
-        tvPlace3.setThreshold(2);
-        tvPlace4.setThreshold(2);
+        tvPlace3.setThreshold(1);
+        tvPlace4.setThreshold(1);
         tvPlace3.setOnItemClickListener(mAutocompleteClickListener_start);
         mPlaceArrayAdapter = new PlaceArrayAdapter(this, android.R.layout.simple_list_item_1,
                 BOUNDS_MOUNTAIN_VIEW, null);
@@ -305,18 +306,13 @@ public class GetDirections extends AppCompatActivity implements
             }
         }, 300);
 
+        showAlertMessage("Under process.");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         initializeMap();
-    }
-
-    public void intentCalling(Class name) {
-        Intent mIntent = new Intent(GetDirections.this, name);
-        startActivity(mIntent);
-
     }
 
     private void initializeMap() {
@@ -341,13 +337,6 @@ public class GetDirections extends AppCompatActivity implements
             }
 
         }
-    }
-
-    private void setupActionBar() {
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.mipmap.ic_launcher);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
     }
 
     @Override
@@ -442,7 +431,6 @@ public class GetDirections extends AppCompatActivity implements
         markers.put(custom_Marker.getId(), "http://img.india-forums.com/images/100x100/37525-a-still-image-of-akshay-kumar.jpg");
 
 
-
         map.animateCamera(CameraUpdateFactory.zoomTo(10), 2000, null);
 
         map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
@@ -460,7 +448,7 @@ public class GetDirections extends AppCompatActivity implements
                 Log.e("ID:", "" + marker.getId());
 
 
-               // startActivity(new Intent(activity, PublicProfileScreen.class));
+                // startActivity(new Intent(activity, PublicProfileScreen.class));
             }
         });
 

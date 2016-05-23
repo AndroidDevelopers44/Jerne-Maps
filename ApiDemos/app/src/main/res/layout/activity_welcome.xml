@@ -4,61 +4,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- JERNE TITLE -->
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginLeft="30dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_blue_background"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/text_title_jerne"
-            android:textColor="@color/colorPrimary"
-            android:textSize="35sp" />
+        <!-- JERNE TEXT & TAG LINE -->
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/text_title_jerne_desc"
-            android:textSize="20sp" />
+            android:layout_marginLeft="25dp"
+            android:orientation="vertical">
+
+            <!-- TOP SPACE VIEW FOR ALL DEVICES -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="120dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_text_jerne_white" />
+
+            <TextView
+                android:id="@+id/tvJerneTagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Your journey made smart"
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <!-- LOGIN & SIGN-UP -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="25dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <!-- LOG IN -->
+
+            <com.example.mapdemo.customfonts.Button.CaviarDreamsButtonFont
+                android:id="@+id/btLogIn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="50"
+                android:onClick="onClick"
+                android:padding="12dp"
+                android:text="LOGIN"
+                android:textColor="@color/color2E2E2E"
+                android:background="@color/white"
+                android:textSize="18sp" />
+
+            <!-- SIGN UP -->
+
+            <com.example.mapdemo.customfonts.Button.CaviarDreamsButtonFont
+                android:id="@+id/btSignUp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="50"
+                android:onClick="onClick"
+                android:padding="12dp"
+                android:text="SIGNUP"
+                android:background="@color/white"
+                android:textColor="@color/color2E2E2E"
+                android:textSize="18sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-    <!-- LOG-IN & SIGN UP BUTTONS -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:weightSum="100">
-
-        <!-- LOG IN -->
-
-        <Button
-            android:id="@+id/btLogIn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="50"
-            android:onClick="onClick"
-            android:text="@string/button_text_login" />
-
-        <!-- SIGN UP -->
-
-        <Button
-            android:id="@+id/btSignUp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_weight="50"
-            android:onClick="onClick"
-            android:text="@string/button_text_Signup" />
-
-    </LinearLayout>
-
 </RelativeLayout>

@@ -20,30 +20,43 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    //For Material design
-    compile 'com.android.support:design:23.0.1'
+    compile 'com.android.support:appcompat-v7:23.4.0'
 
+    //For Material design
+    compile 'com.android.support:design:23.4.0'
+
+    //Google compile for Google services.
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.google.android.gms:play-services-maps:8.4.0'
-    compile 'com.jakewharton:butterknife:7.0.1'
 
+    //Facebook Dependency
     //    compile 'com.facebook.fresco:fresco:0.6.0.+'
     compile 'com.facebook.fresco:fresco:0.6.0'
     compile 'com.facebook.fresco:imagepipeline-okhttp:0.5.0+'
     compile 'com.facebook.android:facebook-android-sdk:4.8.+'
-    compile 'com.mcxiaoke.volley:library-aar:1.0.0'
 
+    compile 'com.mcxiaoke.volley:library-aar:1.0.0'
     compile 'org.apache.httpcomponents:httpclient:4.5'
+
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
     /**
      * Shortcut way to initialize resources ID.
      */
     compile 'com.jakewharton:butterknife:7.0.1'
+
+    //Compile dependency of Retrofit.
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+
+    //New Relic compile dependency.
+    compile 'com.newrelic.agent.android:android-agent:5.+'
 }

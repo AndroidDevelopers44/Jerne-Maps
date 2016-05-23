@@ -61,12 +61,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- WELCOME ACTIVITY -->
+
+        <activity
+            android:name=".activities.WelcomeActivity"
+            android:screenOrientation="portrait" />
+
+        <!-- LOGIN ACTIVITY -->
+
+        <activity
+            android:name=".activities.LogInActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+
+        <!-- SIGN UP ACTIVITY-->
+
+        <activity
+            android:name=".activities.SignUpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustUnspecified" />
+
+        <!-- MAP VIEW ACTIVITY -->
+
         <activity
             android:name=".activities.GetDirections"
             android:label="@string/location_source_demo_label" />
-        <activity android:name=".activities.WelcomeActivity" />
-        <activity android:name=".activities.LogInActivity" />
-        <activity android:name=".activities.SignUpActivity"></activity>
+
     </application>
 
 </manifest>

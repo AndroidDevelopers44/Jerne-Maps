@@ -85,7 +85,7 @@ public class BaseActivity extends AppCompatActivity {
 
     /**
      * Implement a method Custom showEnterCompetitionDialog
-     * Alert Dialog for input user First & Last name,
+     * Alert Dialog for input ic_user First & Last name,
      * email address and Mobile number.
      */
     public void showAlertMessage(String strAlertMessage) {

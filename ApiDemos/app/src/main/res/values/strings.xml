@@ -23,6 +23,17 @@
     <string name="button_text_login">LOG IN</string>
     <string name="button_text_Signup">Sign Up</string>
 
+    <!-- ERROR MESSAGES -->
+    <string name="error_valid_email">Please enter valid email.</string>
+    <string name="error_password_no_match">Password not match.</string>
+    <string name="error_email_password_required">Email and Password could not be empty.</string>
+    <string name="error_all_required">All fields are required.</string>
+
+    <!-- LOG IN ACTIVITY -->
+    <string name="text_title_Login">Login</string>
+    <string name="text_forgot_password"><u>Forgot password?</u></string>
+    <string name="text_remmeber_password">Remember password</string>
+
     <!-- SIGN UP ACTIVITY -->
     <string name="text_title_register">Register</string>
     <string name="hint_first_name">First Name</string>
@@ -32,7 +43,7 @@
     <string name="hint_password">Password</string>
     <string name="hint_confirm_password">Confirm Password</string>
     <string name="hint_contact">Mobile Number</string>
-
+    <string name="text_register_successfully">Register successfully.</string>
 
     <string name="demo_title">Google Maps API Demos</string>
     <string name="legal_info">Legal Info</string>

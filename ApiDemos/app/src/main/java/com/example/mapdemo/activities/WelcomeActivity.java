@@ -1,10 +1,12 @@
 package com.example.mapdemo.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.mapdemo.R;
 
@@ -18,10 +20,20 @@ public class WelcomeActivity extends AppCompatActivity {
      ************************************/
     Intent intent;
 
+    Typeface tfCaviarDreamsBold;
+
+    @Bind(R.id.tvJerneTagline)
+    TextView tvJerneTagline;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
+        //Initialize all view resources ID.
+        ButterKnife.bind(WelcomeActivity.this);
+
+        setFontTypeFace();
     }
 
     /***
@@ -30,7 +42,7 @@ public class WelcomeActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btLogIn:
-                requestIntent(GetDirections.class);
+                requestIntent(LogInActivity.class);
                 break;
 
             case R.id.btSignUp:
@@ -46,5 +58,16 @@ public class WelcomeActivity extends AppCompatActivity {
     private void requestIntent(Class intentToClass) {
         intent = new Intent(WelcomeActivity.this, intentToClass);
         startActivity(intent);
+    }
+
+
+    /**
+     * Implements a method to set FONT style using .ttf by putting
+     * in main\assets\fonts directory of current project.
+     */
+    private void setFontTypeFace() {
+        tfCaviarDreamsBold = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
+
+        tvJerneTagline.setTypeface(tfCaviarDreamsBold);
     }
 }

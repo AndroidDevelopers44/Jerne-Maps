@@ -36,7 +36,7 @@ public abstract class PermissionUtils {
 
     /**
      * Requests the fine location permission. If a rationale with an additional explanation should
-     * be shown to the user, displays a dialog that triggers the request.
+     * be shown to the ic_user, displays a dialog that triggers the request.
      */
     public static void requestPermission(AppCompatActivity activity, int requestId,
             String permission, boolean finishActivity) {

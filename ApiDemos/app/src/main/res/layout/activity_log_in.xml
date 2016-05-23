@@ -1,14 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="LogIn"
-        android:textSize="30sp" />
+    <!-- MAIN VIEW FOR LOG-IN SCREEN -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- SUPPORT TOOL BAR FOR TITLE AND BACK ARROW -->
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/tbLogIn"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/color0072ff"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_collapseMode="pin" />
+
+        <!-- JERNE TEXT & TAG LINE -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:orientation="vertical">
+
+            <!-- TOP SPACE VIEW FOR ALL DEVICES -->
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_text_jerne_blue" />
+
+            <TextView
+                android:id="@+id/tvJerneTagline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="Your journey made smart"
+                android:textColor="@color/color0072ff"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+
+        <!-- USERNAME &amp; PASSWORD FIELDS-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="35dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_user" />
+
+                    <!-- DRAW BLUE LINE AT BOTTOM -->
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:background="@color/color0072ff" />
+
+                    <!-- EMAIL -->
+
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/text_email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:padding="6dp"
+                        android:textColor="@color/color000000"
+                        android:textColorHint="@color/colorb3b3b3"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <!-- BLUE LINE BELOW OF EDIT TEXT -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/color0072ff" />
+            </LinearLayout>
+
+            <!-- PASSWORD -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_password" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="5dp"
+                        android:background="@color/color0072ff" />
+
+                    <!-- PASSWORD -->
+
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:hint="@string/hint_password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:padding="6dp"
+                        android:textColor="@color/color000000"
+                        android:textColorHint="@color/colorb3b3b3"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <!-- BLUE LINE BELOW OF EDIT TEXT -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/color0072ff" />
+            </LinearLayout>
+
+            <!-- REMEMBER ME -->
+
+            <RadioButton
+                android:id="@+id/rbRememberPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:buttonTint="@color/color0072ff"
+                android:text="@string/text_remmeber_password"
+                android:textColor="@color/color343434"
+                android:textSize="14sp" />
+
+            <!-- LOG IN -->
+
+            <com.example.mapdemo.customfonts.Button.CaviarDreamsButtonFont
+                android:id="@+id/btLogIn"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/color0072ff"
+                android:text="@string/text_title_Login"
+                android:textAllCaps="false"
+                android:textColor="@color/colorffffff"
+                android:textSize="22sp" />
+
+            <!-- FORGOT PASSWORD -->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:autoLink="all"
+                android:onClick="onForgotPasword"
+                android:text="@string/text_forgot_password"
+                android:textColor="@color/colorb3b3b3"
+                android:textColorLink="@color/color343434" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>
