@@ -59,4 +59,7 @@ dependencies {
 
     //New Relic compile dependency.
     compile 'com.newrelic.agent.android:android-agent:5.+'
+
+    //3rd party Progress Wheel to display loading with animation.
+    compile 'com.pnikosis:materialish-progress:1.7'
 }

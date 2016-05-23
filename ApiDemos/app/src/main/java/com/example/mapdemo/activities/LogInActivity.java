@@ -2,7 +2,6 @@ package com.example.mapdemo.activities;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -239,15 +238,18 @@ public class LogInActivity extends BaseActivity {
             Log.e(LOG_TAG, "getStatus : " + loginResult.getStatus());
             Log.e(LOG_TAG, "getData().getUserId() : " + loginResult.getData().getUserId());
 
-            //Navigate to HOME Activity.
-            Intent intent = new Intent(LogInActivity.this, GetDirections.class);
-            startActivity(intent);
             this.finish();
+
+            //Navigate to HOME Activity.
+            Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
+            startActivity(intent);
         } else {
             showAlertMessage(loginResult.getMessage());
         }
+
         //Dismiss progress dialog.
         hideProgress();
+
     }
 
     /**

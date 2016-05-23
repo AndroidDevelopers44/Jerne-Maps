@@ -85,8 +85,9 @@
         <!-- MAP VIEW ACTIVITY -->
 
         <activity
-            android:name=".activities.GetDirections"
-            android:label="@string/location_source_demo_label" />
+            android:name=".activities.HomeActivity"
+            android:label="@string/location_source_demo_label"
+            android:windowSoftInputMode="adjustPan" />
 
     </application>
 

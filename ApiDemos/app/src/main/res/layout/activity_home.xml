@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_black_topbar">
+
+            <!-- TOP BAR JERNE LOGO -->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:src="@drawable/ic_jerne_top_bar" />
+
+            <ImageView
+                android:id="@+id/ivMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:padding="16dp"
+                android:src="@drawable/com_facebook_button_icon"
+                android:visibility="gone" />
+
+
+        </android.support.v7.widget.Toolbar>
+
+        <!-- <android.support.v4.widget.DrawerLayout
+             android:id="@+id/drawer_layout"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_below="@id/toolbar"
+             android:layout_weight="1">-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- TOP SEARCH VIEW [FROM, TO, TIME] -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDCDCDC"
+                android:orientation="vertical"
+                android:paddingRight="40dp"
+                android:paddingTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivMap2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_from_to_map" />
+
+                    <!-- FROM & TO AUTOCOMPLETE -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
+
+                        <!-- FROM :- START OF JOURNEY -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.example.mapdemo.customfonts.Text.CaviarDreamsTextFont
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="From : "
+                                android:textSize="16sp" />
+
+                            <FrameLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <!-- FROM PLACE -->
+
+                                <AutoCompleteTextView
+                                    android:id="@+id/tvFromPlace"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="25dp"
+                                    android:alpha="0.7"
+                                    android:background="@android:color/transparent"
+                                    android:gravity="left"
+                                    android:imeOptions="actionNext"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:textColor="@color/color000000"
+                                    android:textSize="16sp">
+
+                                    <requestFocus />
+                                </AutoCompleteTextView>
+
+                                <!-- SEARCH ICON -->
+
+                                <ImageView
+                                    android:id="@+id/btMap"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="right"
+                                    android:layout_marginRight="5dp"
+                                    android:src="@drawable/ic_search" />
+
+                            </FrameLayout>
+
+                        </LinearLayout>
+
+                        <!-- BLUE LINE BELOW OF EDIT TEXT -->
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/color0072ff" />
+
+                        <!-- TO :- END OF JOURNEY -->
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <com.example.mapdemo.customfonts.Text.CaviarDreamsTextFont
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="To : "
+                                android:textSize="16sp" />
+
+                            <!-- DESTINATION PLACE -->
+
+                            <AutoCompleteTextView
+                                android:id="@+id/tvToPlace"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.7"
+                                android:background="@android:color/transparent"
+                                android:imeOptions="actionNext"
+                                android:maxLines="1"
+                                android:paddingLeft="15dp"
+                                android:singleLine="true"
+                                android:textSize="16sp" />
+
+                        </LinearLayout>
+
+                        <!-- BLUE LINE BELOW OF EDIT TEXT -->
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@color/color0072ff" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <!-- TIME :- TIME OF JOURNEY -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:src="@drawable/ic_time" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.example.mapdemo.customfonts.Text.CaviarDreamsTextFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Time : "
+                            android:textSize="16sp" />
+
+                        <AutoCompleteTextView
+                            android:id="@+id/tvTimeOfJourney"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.7"
+                            android:background="@android:color/transparent"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textSize="16sp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- BLUE LINE BELOW OF EDIT TEXT -->
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/color0072ff" />
+
+            </LinearLayout>
+
+            <!-- MODE OF TRAVELING -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDCDCDC"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp">
+
+                <!-- BY WALK  -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivTabWalk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_tab_walk" />
+
+                </LinearLayout>
+
+                <!-- BY BICYCLE  -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivTabBicycle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_tab_bicycle" />
+
+                </LinearLayout>
+
+                <!-- BY CAR  -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivTabCar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_tab_car" />
+
+                </LinearLayout>
+
+                <!-- BY BUS  -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivTabBus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_tab_bus" />
+
+                </LinearLayout>
+
+                <!-- BY TRAIN  -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivTabTrain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_tab_train" />
+
+                </LinearLayout>
+
+                <!-- BY AIRPORT  -->
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivTabAirport"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_tab_airport" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.MapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+
+            <!-- CATEGORY OF TRAVELING [CHEAPEST/LOWEST/ETC] -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorDCDCDC"
+                android:orientation="vertical">
+
+                <!-- TITLE OF TABS -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="14sp"
+                    android:layout_marginTop="4dp"
+                    android:text="ITINERARY"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp">
+
+                    <!-- FASTEST  -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.example.mapdemo.customfonts.Text.CaviarDreamsTextFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Fastest"
+                            android:textSize="10sp" />
+
+                        <ImageView
+                            android:id="@+id/ivTabFastest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_tab_fastest_normal" />
+
+                    </LinearLayout>
+
+                    <!-- CHEAPEST  -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.example.mapdemo.customfonts.Text.CaviarDreamsTextFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cheapest"
+                            android:textSize="10sp" />
+
+                        <ImageView
+                            android:id="@+id/ivTabCheapest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_tab_cheapest_normal" />
+
+                    </LinearLayout>
+
+                    <!-- FAVORITE  -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.example.mapdemo.customfonts.Text.CaviarDreamsTextFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Favorite"
+                            android:textSize="10sp" />
+
+                        <ImageView
+                            android:id="@+id/ivTabFavorite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_tab_favorite_normal" />
+
+                    </LinearLayout>
+
+                    <!-- GREENIE  -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.example.mapdemo.customfonts.Text.CaviarDreamsTextFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Greenie"
+                            android:textSize="10sp" />
+
+                        <ImageView
+                            android:id="@+id/ivTabGreenie"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_tab_greenie_normal" />
+
+                    </LinearLayout>
+
+                    <!-- GROUP  -->
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <com.example.mapdemo.customfonts.Text.CaviarDreamsTextFont
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Group"
+                            android:textSize="10sp" />
+
+                        <ImageView
+                            android:id="@+id/ivTabGroup"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_tab_group_normal" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!--  <LinearLayout
+                  android:id="@+id/lvSlidingMenu"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_gravity="end"
+                  android:background="#8A3C16"
+                  android:clickable="true"
+                  android:orientation="vertical">
+
+                  <RelativeLayout
+                      android:id="@+id/rlProfile"
+                      android:layout_width="match_parent"
+                      android:layout_height="140dp"
+                      android:background="@color/colorPrimary"
+                      android:paddingBottom="8dp"
+                      android:paddingLeft="16dp"
+                      android:paddingRight="16dp"
+                      android:paddingTop="8dp">
+
+                      <Button
+                          android:layout_width="40dp"
+                          android:layout_height="40dp"
+                          android:layout_alignParentLeft="true"
+                          android:layout_centerInParent="true"
+                          android:layout_marginLeft="10dp"
+                          android:layout_marginTop="9dp"
+                          android:background="@drawable/common_ic_googleplayservices" />
+
+                      <Button
+                          android:layout_width="40dp"
+                          android:layout_height="40dp"
+                          android:layout_alignParentRight="true"
+                          android:layout_centerInParent="true"
+                          android:layout_marginRight="10dp"
+
+                          android:layout_marginTop="9dp"
+                          android:background="@drawable/common_ic_googleplayservices" />
+
+                      <TextView
+                          android:id="@+id/tvName"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_alignParentTop="true"
+                          android:gravity="top|center"
+                          android:singleLine="true"
+                          android:text="VISHAL SHAHI"
+                          android:textColor="@android:color/white"
+                          android:textSize="22sp" />
+
+                      <com.facebook.drawee.view.SimpleDraweeView
+                          android:id="@+id/sdvDp"
+                          android:layout_width="80dp"
+                          android:layout_height="80dp"
+                          android:layout_below="@+id/tvName"
+                          android:layout_centerInParent="true"
+                          android:layout_marginTop="7dp"
+                          app:placeholderImage="@color/white"
+                          app:roundAsCircle="true" />
+
+
+                      &lt;!&ndash;  <TextView
+                            android:id="@+id/tvAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignLeft="@id/tvName"
+                            android:layout_below="@id/tvName"
+                            android:layout_toLeftOf="@id/sdvDp"
+                            android:text="H.No.293, Sector 28, Chandigarh"
+                            android:textColor="@android:color/white" />&ndash;&gt;
+
+
+                  </RelativeLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:background="@android:color/white"
+                      android:orientation="vertical">
+
+
+                      <GridView
+                          android:id="@+id/gridView1"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_alignParentLeft="true"
+                          android:layout_below="@+id/rlProfile"
+                          android:horizontalSpacing="1dp"
+                          android:numColumns="2"
+                          android:stretchMode="columnWidth"
+                          android:verticalSpacing="1dp">
+
+                      </GridView>
+
+                      <View
+                          android:layout_width="match_parent"
+                          android:layout_height="1dp"
+                          android:background="@android:color/white"></View>
+
+                      <FrameLayout
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:background="#8A3C16"></FrameLayout>
+                  </LinearLayout>
+              </LinearLayout>
+      -->
+            <!--  </android.support.v4.widget.DrawerLayout>-->
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

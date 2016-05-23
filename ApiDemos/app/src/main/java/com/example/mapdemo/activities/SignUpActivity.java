@@ -32,6 +32,15 @@ import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 
+/**
+ * The {@link SignUpActivity} used for SIGN-UP functionality
+ * called from {@link WelcomeActivity} for Registration process.
+ * <p/>
+ *
+ * @author karannassa44@gmail.com
+ * @version 1.0
+ * @since 22 May, 2016
+ */
 public class SignUpActivity extends BaseActivity {
 
     private String LOG_TAG = SignUpActivity.class.getSimpleName();
@@ -220,7 +229,7 @@ public class SignUpActivity extends BaseActivity {
             Log.e(LOG_TAG, "getData().getUserId() : " + loginResult.getData().getUserId());
 
 //            //Navigate to HOME Activity.
-//            Intent intent = new Intent(LogInActivity.this, GetDirections.class);
+//            Intent intent = new Intent(LogInActivity.this, HomeActivity.class);
 //            startActivity(intent);
 //            this.finish();
 

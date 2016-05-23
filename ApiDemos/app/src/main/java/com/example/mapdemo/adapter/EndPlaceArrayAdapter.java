@@ -33,7 +33,7 @@ public class EndPlaceArrayAdapter
      *
      * @param context  Context
      * @param resource Layout resource
-     * @param bounds   Used to specify the search bounds
+     * @param bounds   Used to specify the ic_search bounds
      * @param filter   Used to specify place types
      */
     public EndPlaceArrayAdapter(Context context, int resource, LatLngBounds bounds,

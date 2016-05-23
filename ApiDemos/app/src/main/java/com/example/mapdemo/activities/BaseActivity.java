@@ -1,9 +1,11 @@
 package com.example.mapdemo.activities;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -11,9 +13,12 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import com.example.mapdemo.R;
+import com.pnikosis.materialishprogress.ProgressWheel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,6 +32,7 @@ public class BaseActivity extends AppCompatActivity {
 
     Snackbar snackbar;
     private ProgressDialog mProgress;
+    Dialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,21 +71,36 @@ public class BaseActivity extends AppCompatActivity {
      */
     public void showPleaseWait(String sMessage) {
 
-        if (mProgress == null) {
-            mProgress = new ProgressDialog(BaseActivity.this);
-            mProgress.setCancelable(false);
-            mProgress.setMessage(sMessage);
-            mProgress.show();
+        try {
+            if (pDialog == null) {
+                pDialog = new Dialog(BaseActivity.this);
+                pDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                pDialog.setContentView(R.layout.custom_progress_wheel);
+                pDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                ProgressWheel wheel = new ProgressWheel(BaseActivity.this);
+                wheel.setBarColor(Color.RED);
+                pDialog.setCancelable(false);
+
+                if (!pDialog.isShowing()) {
+                    pDialog.show();
+                }
+            }
+        } catch (Exception e) {
+            Log.e("Exception", "Progress error : " + e);
         }
     }
 
     /**
-     * hide Progress dialog.
+     * Implements a method to hide progress wheel.
      */
     public void hideProgress() {
-        if (mProgress != null && mProgress.isShowing()) {
-            mProgress.dismiss();
-            mProgress = null;
+        if (pDialog != null && pDialog.isShowing()) {
+            try {
+                pDialog.dismiss();
+                pDialog = null;
+            } catch (Exception e) {
+                Log.e("hide", "" + e);
+            }
         }
     }
 

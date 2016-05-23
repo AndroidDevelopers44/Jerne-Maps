@@ -4,18 +4,16 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.DisplayMetrics;
@@ -24,10 +22,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -75,11 +74,34 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by ic_user on 12/7/2015.
+ * The {@link HomeActivity} used for display {@link MapFragment}
+ * with {@link android.support.design.widget.TabLayout.Tab}.
+ * <p/>
+ *
+ * @author karannassa44@gmail.com
+ * @version 1.0
+ * @since 23 May, 2016
  */
-public class GetDirections extends BaseActivity implements
+public class HomeActivity extends BaseActivity implements
         GoogleApiClient.OnConnectionFailedListener,
         GoogleApiClient.ConnectionCallbacks {
+
+    /*************************************
+     * DECLARATION OF CLASS INSTANCES
+     ************************************/
+    @Bind(R.id.toolbar)
+    Toolbar toolbar;
+
+    @Bind(R.id.btMap)
+    ImageView btMap;
+    // Google Map
+    private GoogleMap map;
+    private AutoCompleteTextView tvFromPlace, tvToPlace;
+
+    //Custom TypeFaceb declaration.
+    Typeface tfCaviarDreamsBold, tfCaviarDreams;
+
+
     private static final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
             new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
     private static final String LOG_TAG = "GetDirection";
@@ -89,7 +111,7 @@ public class GetDirections extends BaseActivity implements
 //    public static Class[] classList = {MyRidesRecyclerView.class, ChatListScreen.class, MyFriends.class, ChatListScreen.class, FavouriteDesination.class, Notification.class, SettingsActivity.class, SettingsActivity.class};
     // public static String [] prgmNameList={"Riding Destinations","Meet 'N' Plan A Ride","Riding Events \n    ","Modifly Your Bikes","Healthy Riding","Get Directions","Notifications","Settings"};
     // public static int [] prgmImages={R.drawable.icon_menu_destination,R.drawable.icon_menu_meetplan,R.drawable.icon_menu_events,R.drawable.icon_modifybike,R.drawable.icon_menu_healthy_riding,R.drawable.icon_menu_get_direction,R.drawable.icon_menu_notification,R.drawable.icon_menu_settings};
-    // public static Class [] classList={DestinationsListActivity.class,PlanRideActivity.class,EventsListActivity.class,ModifyBikeActivity.class,HealthyRidingActivity.class,GetDirections.class,NotificationScreen.class,SettingsActivity.class};
+    // public static Class [] classList={DestinationsListActivity.class,PlanRideActivity.class,EventsListActivity.class,ModifyBikeActivity.class,HealthyRidingActivity.class,HomeActivity.class,NotificationScreen.class,SettingsActivity.class};
     private final LatLng HAMBURG = new LatLng(53.558, 9.927);
     private final LatLng HAMBURG_ = new LatLng(53.500, 9.900);
     public ImageLoader imageLoader;
@@ -102,23 +124,15 @@ public class GetDirections extends BaseActivity implements
     public LatLng mString_end = new LatLng(28.6139391, 77.2090212);
     public LatLng mString_start = new LatLng(30.483996999999995, 76.5939516);
     double start, end;
-    @Bind(R.id.gridView1)
-    GridView gridView1;
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
-    @Bind(R.id.tvTitleToolbar)
-    TextView tvTitleToolbar;
+//    @Bind(R.id.gridView1)
+//    GridView gridView1;
     //    @Bind(R.id.drawer_layout)
 //    DrawerLayout mDrawerLayout;
-    @Bind(R.id.lvSlidingMenu)
-    LinearLayout lvSlidingMenu;
-    @Bind(R.id.tvName)
-    TextView tvName;
-    @Bind(R.id.btMap)
-    Button btMap;
-    // Google Map
-    private GoogleMap map;
-    private AutoCompleteTextView tvPlace3, tvPlace4;
+//    @Bind(R.id.lvSlidingMenu)
+//    LinearLayout lvSlidingMenu;
+//    @Bind(R.id.tvName)
+//    TextView tvName;
+
     private GoogleApiClient mGoogleApiClient;
     private PlaceArrayAdapter mPlaceArrayAdapter;
     private Activity activity;
@@ -127,6 +141,7 @@ public class GetDirections extends BaseActivity implements
     private Marker marker;
     private Hashtable<String, String> markers;
     private ResultCallback<PlaceBuffer> mUpdatePlaceDetailsCallback_start;
+
     private AdapterView.OnItemClickListener mAutocompleteClickListener_start
             = new AdapterView.OnItemClickListener() {
         @Override
@@ -140,6 +155,7 @@ public class GetDirections extends BaseActivity implements
             Log.i(LOG_TAG, "Fetching details for ID: " + item.placeId);
         }
     };
+
     private ResultCallback<PlaceBuffer> mUpdatePlaceDetailsCallback_end
             = new ResultCallback<PlaceBuffer>() {
         @Override
@@ -175,6 +191,7 @@ public class GetDirections extends BaseActivity implements
         }
 
     };
+
     private AdapterView.OnItemClickListener mAutocompleteClickListener_end
             = new AdapterView.OnItemClickListener() {
         @Override
@@ -242,15 +259,19 @@ public class GetDirections extends BaseActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Fresco.initialize(GetDirections.this);
-        setContentView(R.layout.activity_getdirections);
+        Fresco.initialize(HomeActivity.this);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.activity_home);
 
         v2GetRouteDirection = new GMapV2GetRouteDirection();
         activity = this;
         ButterKnife.bind(this);
+
         //  setupActionBar();
+
         markerLatLng = new LatLng(48.8567, 2.3508);
-        tvTitleToolbar.setText(getResources().getString(R.string.app_name));
+
 //        gridView1.setAdapter(new CustomGridAdapter(this, prgmNameList, prgmImages));
 //        gridView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //            @Override
@@ -264,6 +285,7 @@ public class GetDirections extends BaseActivity implements
 //
 //            }
 //        });
+
         initImageLoader();
         markers = new Hashtable<String, String>();
         imageLoader = ImageLoader.getInstance();
@@ -280,25 +302,25 @@ public class GetDirections extends BaseActivity implements
 
         // ATTENTION: This "addApi(AppIndex.API)"was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        mGoogleApiClient = new GoogleApiClient.Builder(GetDirections.this)
+        mGoogleApiClient = new GoogleApiClient.Builder(HomeActivity.this)
                 .addApi(Places.GEO_DATA_API)
-                .enableAutoManage(this, GOOGLE_API_CLIENT_ID, GetDirections.this)
+                .enableAutoManage(this, GOOGLE_API_CLIENT_ID, HomeActivity.this)
                 .addConnectionCallbacks(this)
                 .addApi(AppIndex.API).build();
-        tvPlace3 = (AutoCompleteTextView) findViewById(R.id
-                .tvPlace3);
-        tvPlace4 = (AutoCompleteTextView) findViewById(R.id
-                .tvPlace4);
-        tvPlace3.setThreshold(1);
-        tvPlace4.setThreshold(1);
-        tvPlace3.setOnItemClickListener(mAutocompleteClickListener_start);
+        tvFromPlace = (AutoCompleteTextView) findViewById(R.id
+                .tvFromPlace);
+        tvToPlace = (AutoCompleteTextView) findViewById(R.id
+                .tvToPlace);
+        tvFromPlace.setThreshold(1);
+        tvToPlace.setThreshold(1);
+        tvFromPlace.setOnItemClickListener(mAutocompleteClickListener_start);
         mPlaceArrayAdapter = new PlaceArrayAdapter(this, android.R.layout.simple_list_item_1,
                 BOUNDS_MOUNTAIN_VIEW, null);
-        tvPlace3.setAdapter(mPlaceArrayAdapter);
-        tvPlace4.setOnItemClickListener(mAutocompleteClickListener_end);
+        tvFromPlace.setAdapter(mPlaceArrayAdapter);
+        tvToPlace.setOnItemClickListener(mAutocompleteClickListener_end);
         _ArrayAdapter = new EndPlaceArrayAdapter(this, android.R.layout.simple_list_item_1,
                 BOUNDS_MOUNTAIN_VIEW, null);
-        tvPlace4.setAdapter(_ArrayAdapter);
+        tvToPlace.setAdapter(_ArrayAdapter);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -306,15 +328,22 @@ public class GetDirections extends BaseActivity implements
             }
         }, 300);
 
-        showAlertMessage("Under process.");
+        //Set font style from .ttf file.
+        setFontTypeFace();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        //Initialize the Google Map.
         initializeMap();
     }
 
+    /**
+     * Implements a method to initialize the
+     * Google Map.
+     */
     private void initializeMap() {
         if (map == null) {
             map = ((MapFragment) getFragmentManager().findFragmentById(
@@ -355,7 +384,7 @@ public class GetDirections extends BaseActivity implements
         return super.onOptionsItemSelected(item);
     }
 
-    @OnClick({R.id.ivMenu, R.id.rlProfile, R.id.btMap})
+    @OnClick({R.id.ivMenu, /*R.id.rlProfile,*/ R.id.btMap})
     void onclick(View view) {
         switch (view.getId()) {
 
@@ -365,9 +394,9 @@ public class GetDirections extends BaseActivity implements
 //                else
 //                    mDrawerLayout.openDrawer(lvSlidingMenu);
                 break;
-            case R.id.rlProfile:
+           // case R.id.rlProfile:
                 //startActivity(new Intent(activity, ProfileActivity.class));
-                break;
+          //      break;
             case R.id.btMap:
                 GetRouteTask getRoute = new GetRouteTask();
                 getRoute.execute();
@@ -407,7 +436,7 @@ public class GetDirections extends BaseActivity implements
         final Marker hamburg = map.addMarker(new MarkerOptions()
                 .position(HAMBURG)
                 .title("Hamburg")
-                .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker))));
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)/*(createDrawableFromView(this, marker))*/));
         markers.put(hamburg.getId(), "http://img.india-forums.com/images/100x100/37525-a-still-image-of-akshay-kumar.jpg");
 
 
@@ -419,7 +448,7 @@ public class GetDirections extends BaseActivity implements
                 .position(markerLatLng)
                 .title("PLACE 2")
                 .snippet("Description")
-                .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker))));
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)/*fromBitmap(createDrawableFromView(this, marker))*/));
         markers.put(customMarker.getId(), "http://img.india-forums.com/images/100x100/37525-a-still-image-of-akshay-kumar.jpg");
         // map.moveCamera(CameraUpdateFactory.newLatLngZoom(HAMBURG, 15));
 
@@ -427,7 +456,7 @@ public class GetDirections extends BaseActivity implements
                 .position(HAMBURG_)
                 .title("PLACE 1")
                 .snippet("Description")
-                .icon(BitmapDescriptorFactory.fromBitmap(createDrawableFromView(this, marker))));
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)/*fromBitmap(createDrawableFromView(this, marker))*/));
         markers.put(custom_Marker.getId(), "http://img.india-forums.com/images/100x100/37525-a-still-image-of-akshay-kumar.jpg");
 
 
@@ -487,6 +516,10 @@ public class GetDirections extends BaseActivity implements
 
     }
 
+
+    /**
+     * Implements a method to hide KEYBOARD.
+     */
     private void hideKeyboard() {
         // Check if no view has focus:
         View view = this.getCurrentFocus();
@@ -515,10 +548,10 @@ public class GetDirections extends BaseActivity implements
         @Override
         public View getInfoContents(Marker marker) {
 
-            if (GetDirections.this.marker != null
-                    && GetDirections.this.marker.isInfoWindowShown()) {
-                GetDirections.this.marker.hideInfoWindow();
-                GetDirections.this.marker.showInfoWindow();
+            if (HomeActivity.this.marker != null
+                    && HomeActivity.this.marker.isInfoWindowShown()) {
+                HomeActivity.this.marker.hideInfoWindow();
+                HomeActivity.this.marker.showInfoWindow();
             }
             return null;
         }
@@ -526,7 +559,7 @@ public class GetDirections extends BaseActivity implements
 
         @Override
         public View getInfoWindow(final Marker marker) {
-            GetDirections.this.marker = marker;
+            HomeActivity.this.marker = marker;
 
 
             String url = null;
@@ -596,7 +629,7 @@ public class GetDirections extends BaseActivity implements
 
         @Override
         protected void onPreExecute() {
-            Dialog = new ProgressDialog(GetDirections.this);
+            Dialog = new ProgressDialog(HomeActivity.this);
             Dialog.setMessage("Loading route...");
             Dialog.show();
         }
@@ -638,6 +671,18 @@ public class GetDirections extends BaseActivity implements
 
             Dialog.dismiss();
         }
+    }
+
+    /**
+     * Implements a method to set FONT style using .ttf by putting
+     * in main\assets\fonts directory of current project.
+     */
+    private void setFontTypeFace() {
+        tfCaviarDreamsBold = Typeface.createFromAsset(getAssets(), "fonts/Caviar_Dreams_Bold.ttf");
+        tfCaviarDreams = Typeface.createFromAsset(getAssets(), "fonts/CaviarDreams.ttf");
+
+        tvFromPlace.setTypeface(tfCaviarDreams);
+        tvToPlace.setTypeface(tfCaviarDreams);
     }
 
 }
